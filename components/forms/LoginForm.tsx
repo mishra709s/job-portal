@@ -1,4 +1,5 @@
-import { Button } from '../ui/button'
+import * as React from 'react'
+import { auth, signIn } from '@/app/utils/auth'
 import {
   Card,
   CardContent,
@@ -7,8 +8,10 @@ import {
   CardTitle,
 } from '../ui/card'
 
-import * as React from 'react'
 import type { SVGProps } from 'react'
+import { GeneralSubmitButton } from '../general/SubmitButtons'
+import { redirect } from 'next/navigation'
+
 const GitHub = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="1em"
@@ -56,7 +59,11 @@ const Google = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
-export function LoginForm() {
+export async function LoginForm() {
+  const session = await auth()
+  if (session?.user) {
+    redirect('/')
+  }
   return (
     <div className="flex flex-col gap-6">
       <Card>
@@ -68,18 +75,38 @@ export function LoginForm() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-4">
-            <form>
-              <Button className="w-full" variant="outline">
-                <GitHub className="size-4" />
-                Login with Github
-              </Button>
+            <form
+              action={async () => {
+                'use server'
+
+                await signIn('github', {
+                  redirectTo: '/',
+                })
+              }}
+            >
+              <GeneralSubmitButton
+                text="Login with GitHub"
+                variant="outline"
+                className="w-full"
+                icon={<GitHub className="size-4" />}
+              />
             </form>
 
-            <form>
-              <Button className="w-full" variant="outline">
-                <Google className="size-4" />
-                Login with Google
-              </Button>
+            <form
+              action={async () => {
+                'use server'
+
+                await signIn('google', {
+                  redirectTo: '/',
+                })
+              }}
+            >
+              <GeneralSubmitButton
+                text="Login with Google"
+                variant="outline"
+                className="w-full"
+                icon={<Google className="size-4" />}
+              />
             </form>
           </div>
         </CardContent>

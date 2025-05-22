@@ -38,3 +38,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Resources
 
 - https://svgl.app/
+
+## Add these commands while setting up the db
+
+pnpm add @prisma/client
+pnpm exec prisma generate
