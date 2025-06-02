@@ -12,7 +12,7 @@ export async function Navbar() {
     <nav className="flex items-center justify-between py-5">
       <Link href="/" className="flex items-center gap-2">
         <Image src={Logo} alt="Job Portal Logo" width={40} height={40} />
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold cursor-pointer">
           Job
           <span className="text-primary">Portal</span>
         </h1>
@@ -26,7 +26,7 @@ export async function Navbar() {
               await signOut({ redirectTo: '/' })
             }}
           >
-            <Button>Logout</Button>
+            <Button className="cursor-pointer">Logout</Button>
           </form>
         ) : (
           <Link

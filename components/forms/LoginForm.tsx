@@ -80,14 +80,14 @@ export async function LoginForm() {
                 'use server'
 
                 await signIn('github', {
-                  redirectTo: '/',
+                  redirectTo: '/onboarding',
                 })
               }}
             >
               <GeneralSubmitButton
                 text="Login with GitHub"
                 variant="outline"
-                className="w-full"
+                className="w-full cursor-pointer"
                 icon={<GitHub className="size-4" />}
               />
             </form>
@@ -97,14 +97,14 @@ export async function LoginForm() {
                 'use server'
 
                 await signIn('google', {
-                  redirectTo: '/',
+                  redirectTo: '/onboarding',
                 })
               }}
             >
               <GeneralSubmitButton
                 text="Login with Google"
                 variant="outline"
-                className="w-full"
+                className="w-full cursor-pointer"
                 icon={<Google className="size-4" />}
               />
             </form>
