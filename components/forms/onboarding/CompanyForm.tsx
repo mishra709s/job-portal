@@ -28,6 +28,7 @@ import { createCompany } from '@/app/actions'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { XIcon } from 'lucide-react'
+import { redirect } from 'next/navigation'
 
 export function CompanyForm() {
   const [pending, setPending] = useState(false)
@@ -48,6 +49,7 @@ export function CompanyForm() {
     try {
       setPending(true)
       await createCompany(data)
+      redirect('/')
     } catch (error) {
       if (error instanceof Error && error.message !== 'NEXT_REDIRECT') {
         console.log('Error onSubmit :', error.message)

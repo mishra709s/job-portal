@@ -4,6 +4,7 @@ import Logo from '@/public/logo.png'
 import { Button, buttonVariants } from '../ui/button'
 import { ThemeToggle } from './ThemeToggle'
 import { auth, signOut } from '@/app/utils/auth'
+import { UserDropdown } from './UserDropdown'
 
 export async function Navbar() {
   const session = await auth()
@@ -17,7 +18,7 @@ export async function Navbar() {
           <span className="text-primary">Portal</span>
         </h1>
       </Link>
-      <div className="flex items-center gap-4">
+      {/* <div className="flex items-center gap-4">
         <ThemeToggle />
         {session?.user ? (
           <form
@@ -32,6 +33,28 @@ export async function Navbar() {
           <Link
             href="/login"
             className={buttonVariants({ variant: 'outline', size: 'lg' })}
+          >
+            Login
+          </Link>
+        )}
+      </div> */}
+
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center gap-5">
+        <ThemeToggle />
+        <Link className={buttonVariants({ size: 'lg' })} href="/post-job">
+          Post Job
+        </Link>
+        {session?.user ? (
+          <UserDropdown
+            email={session.user.email ?? ''}
+            name={session.user.name ?? ''}
+            image={session.user.image ?? ''}
+          />
+        ) : (
+          <Link
+            className={buttonVariants({ variant: 'outline', size: 'lg' })}
+            href="/login"
           >
             Login
           </Link>

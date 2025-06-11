@@ -78,7 +78,7 @@ export async function LoginForm() {
             <form
               action={async () => {
                 'use server'
-
+                console.log('Signed In with Github. Red to OnBoarding')
                 await signIn('github', {
                   redirectTo: '/onboarding',
                 })
@@ -95,7 +95,7 @@ export async function LoginForm() {
             <form
               action={async () => {
                 'use server'
-
+                console.log('Signed In with Google. Red to OnBoarding')
                 await signIn('google', {
                   redirectTo: '/onboarding',
                 })

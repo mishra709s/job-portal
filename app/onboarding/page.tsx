@@ -22,7 +22,7 @@ async function checkIfUserHasFinishedOnboarding(userId: string) {
 
 export default async function OnboardingPage() {
   const session = await requireUser()
-  await checkIfUserHasFinishedOnboarding(session.id as string)
+  await checkIfUserHasFinishedOnboarding(session.id ?? '')
 
   return (
     <div className="h-screen flex flex-col items-center justify-center">
